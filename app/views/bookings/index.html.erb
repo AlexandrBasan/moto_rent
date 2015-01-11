@@ -1,0 +1,81 @@
+<h1 align="center"><%= (t 'booking.bookings') %> <span class="badge"><%= @bookings.count %></span></h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Supplier</th>
+      <th>V type</th>
+      <th>Inquiry</th>
+      <th>Airport</th>
+      <th>Status</th>
+      <th>Type</th>
+      <th>Arrival airline</th>
+      <th>Arrival flight number</th>
+      <th>Arrival fliyng from</th>
+      <th>Arrival date</th>
+      <th>Departure airlines</th>
+      <th>Departure flight number</th>
+      <th>Departure date</th>
+      <th>Arrival pick up time</th>
+      <th>Departure pick up time</th>
+      <th>Price</th>
+      <th>Arrival address line 1</th>
+      <th>Arrival address line 2</th>
+      <th>Departure address line 1</th>
+      <th>Departure address line 2</th>
+      <th>Passengers</th>
+      <th>Baggages</th>
+      <th>Hand laggages</th>
+      <th>Baby</th>
+      <th>Child</th>
+      <th>Booster</th>
+      <th>Special requirements</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.user_id %></td>
+        <td><%= booking.supplier_id %></td>
+        <td><%= booking.vehicletype_id %></td>
+        <td><%= booking.booking_number %></td>
+        <td><%= booking.airport_id %></td>
+        <td><%= booking.status %></td>
+        <td><%= booking.booking_type %></td>
+        <td><%= booking.arrival_airline %></td>
+        <td><%= booking.arrival_flight_number %></td>
+        <td><%= booking.arrival_fliyng_from %></td>
+        <td><%= booking.arrival_date %></td>
+        <td><%= booking.departure_airlines %></td>
+        <td><%= booking.departure_flight_number %></td>
+        <td><%= booking.departure_date %></td>
+        <td><%= booking.arrival_pick_up_time %></td>
+        <td><%= booking.departure_pick_up_time %></td>
+        <td><%= booking.price %></td>
+        <td><%= booking.arrival_address_line_1 %></td>
+        <td><%= booking.arrival_address_line_2 %></td>
+        <td><%= booking.departure_address_line_1 %></td>
+        <td><%= booking.departure_address_line_2 %></td>
+        <td><%= booking.passengers %></td>
+        <td><%= booking.baggages %></td>
+        <td><%= booking.hand_laggages %></td>
+        <td><%= booking.baby %></td>
+        <td><%= booking.child %></td>
+        <td><%= booking.booster %></td>
+        <td><%= booking.special_requirements %></td>
+        <td><%= link_to (I18n.t 'button.show'), booking, class: "btn btn-sm btn-primary" %></td>
+        <td><%= link_to (I18n.t 'button.edit'), edit_booking_path(booking), class: "btn btn-sm btn-warning" %></td>
+        <% if current_user.try(:admin?) %>
+        <td><%= link_to (I18n.t 'button.delete'), booking, method: :delete, data: {confirm: (t 'operations_confirmation.confirm')}, class: "btn btn-sm btn-danger" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Booking', new_booking_path, class: "btn btn-sm btn-primary" %>

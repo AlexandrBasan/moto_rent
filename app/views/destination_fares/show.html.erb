@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Vehicletype:</strong>
+  <%= @vehicletype_type %>
+</p>
+
+<p>
+  <strong>Destination:</strong>
+  <%= @vehicletype_destination %>
+</p>
+
+<p>
+  <strong>Dest fare:</strong>
+  <%= @destination_fare.dest_fare %>
+</p>
+
+<%= link_to (I18n.t 'button.edit'), edit_destination_fare_path(@destination_fare), class: "btn btn-sm btn-primary" %> |
+<%= link_to (I18n.t 'button.back'), destination_fares_path, class: "btn btn-sm btn-warning" %>

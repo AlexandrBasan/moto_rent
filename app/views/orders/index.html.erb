@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-6">
+        <h1><%= (t 'top_up_history') %>  <span class="badge"><%= @orders.count %></span></h1>
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th><%= (t :date_string) %></th>
+            <th><%= (t 'summ_string') %></th>
+            <th><%= (t 'prefix.currency_label') %></th>
+            <th><%= (t 'orders.order_status') %></th>
+          </tr>
+          </thead>
+
+          <div align="center">
+            <%= will_paginate %>
+          </div>
+
+          <tbody>
+          <% @orders.each do |order| %>
+              <tr>
+                <td><%= time_format(order.created_at, @user_time_zone) %></td>
+          <td><%= sum_format(order.amount) %></td>
+                <td><%= order.currency %></td>
+                <% if order.status == "success" %>
+                    <td class="text-success"><%= (t 'payment_method.success') %></td>
+                <%elsif order.status == "failure" %>
+                    <td class="text-danger"><%= (t 'payment_method.decline') %></td>
+                <% else %>
+                    <td class="text-warning"><%= (t 'payment_method.wait') %></td>
+                <% end %>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <div align="center">
+          <%= will_paginate %>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body text-right">
+            <strong><%= (t :summ_string) %>:</strong> <%= sum_format(@all_orders.sum(:amount)) %> <%= @currency %>.
+            <strong><%= (t 'payment_method.success') %>:</strong> <%= sum_format(@all_orders.where(status: "success").sum(:amount)) %> <%= @currency %>
+          </div>
+        </div>
+
+    </div>
+  <div class="col-md-6">
+
+        <h1><%= (t 'transaction_history') %> <span class="badge"><%= @transactions.count %></span></h1>
+        <%= render 'transactions/index' %>
+</div>
+   </div>
+
+

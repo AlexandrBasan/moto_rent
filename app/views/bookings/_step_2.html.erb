@@ -1,0 +1,57 @@
+<% @passangers = params[:passangers] %>
+<% @baggages = params[:baggages] %>
+<% @from = params[:from] %>
+<% @to = params[:to] %>
+<% @to = Destination.find_by_name(params[:to]).id %>
+<% @vehicletypes = Vehicletype.joins(:destination_fares).where("passnum >= ? AND bagagenum >= ? AND destination_fares.destination_id = ?", (@passangers).to_i, (@baggages).to_i, @to) %>
+<% if @vehicletypes.nil? || @vehicletypes.empty? %>
+    <h1 align="center" style="color: #ff0000;"><%= t 'flash.sorry' %></h1>
+<% else %>
+<!-- Step 2 -->
+    <h3 align="center" style="border-bottom: 1px solid #eeeeee;">Listing vehicletypes</h3>
+    <% @vehicletypes.each do |vehicletype| %>
+        <div class="row" style="border-bottom: 1px solid #eeeeee;">
+          <div class="col-md-4">
+            <!-- Tab panes start-->
+            <div class="tab-content clear-style">
+              <h5 align="center"><%= vehicletype.vtype %></h5>
+              <div class="portrait_map">
+                <img alt="" src="<%= vehicletype.image %>">
+              </div>
+            </div>
+          </div>
+
+          <!-- product side start -->
+          <aside class="col-md-4">
+            <div class="sidebar">
+              <div class="side product-item vertical-divider-left">
+
+                <p><%= vehicletype.vdescription %></p>
+                <p>
+                  <b>Passangers: </b><%= vehicletype.passnum %>
+                </p>
+                <p>
+                  <b>Baggagenumbers: </b><%= vehicletype.bagagenum %>
+                </p>
+              </div>
+            </div>
+          </aside>
+          <!-- product side end -->
+          <!-- product side start -->
+          <aside class="col-md-4">
+            <div class="sidebar">
+              <div class="side product-item vertical-divider-left">
+                <% @price = DestinationFare.where(:destination_id => @to, :vehicletype_id => vehicletype.id).take %>
+                <h3><b><span class="price"><%= sum_format(@price.dest_fare) %> $</span></b></h3>
+                <%= link_to ((I18n.t 'booking.book_now')), '', onclick: "book(#{vehicletype.id}); return false", class: "btn btn-sm btn-success" %>
+
+                <%= link_to "booking_info_vehicletype", vehicletype_path(11), remote: true, class: "btn btn-sm btn-success", id: "booking_information_", :style => "display: none;" %>
+              </div>
+            </div>
+          </aside>
+          <!-- product side end -->
+        </div>
+
+    <% end %>
+<!-- Step 2 -->
+<% end %>

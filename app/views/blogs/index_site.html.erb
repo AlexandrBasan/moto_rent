@@ -1,0 +1,41 @@
+<div class="pages page-blog-list" id="page-blog-list">
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1 class="line-divider" id="blog" name="blog" style="text-align: center"><%= (t 'menu.blog') %></h1>
+    </header>
+    <!-- End Header -->
+
+    <div class="row-fluid">
+      <div class="col-md-12">
+        <!-- Article -->
+        <%= will_paginate %>
+        <% @blogs.each do |blog| %>
+            <article class="clearfix blogpost object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="200">
+              <div class="blogpost-body">
+                <div class="post-info">
+                  <span class="day"><%= blog.created_at.strftime("%d") %></span>
+                  <span class="month"><%= blog.created_at.strftime("%b") %></span>
+                  <span class="month"><%= blog.created_at.strftime("%Y") %></span>
+                </div>
+                <div class="blogpost-content">
+                  <header>
+                    <h3 class="title"><%= blog.title %></h3>
+                  </header>
+                  <p style="text-align: justify"><%= blog.content %></p>
+                </div>
+              </div>
+              <footer class="clearfix">
+                <span><%= blog.title %></span>
+              </footer>
+            </article>
+            <% end %>
+        <%= will_paginate %>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

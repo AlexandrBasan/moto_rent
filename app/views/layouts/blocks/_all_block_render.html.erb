@@ -1,0 +1,19 @@
+<div class="row">
+  <!--Left-->
+  <% if current_user && current_user.role == "OAuth" %>
+
+  <% end %>
+  <div class="col-md-6">
+    <section>
+    </section>
+  </div>
+  <!--Right-->
+  <div class="col-md-6">
+    <% if current_user.try(:admin?) %>
+        <%= render 'layouts/blocks/admin_blocks/users' %>
+        <%= render 'layouts/blocks/admin_blocks/whos_online' %>
+        <!--Delivery company Blocks-->
+    <% else %>
+    <% end %>
+  </div>
+</div>

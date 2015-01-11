@@ -1,0 +1,154 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @booking.user_id %>
+</p>
+
+<p>
+  <strong>Supplier:</strong>
+  <%= @booking.supplier_id %>
+</p>
+
+<p>
+  <strong>vehicletype_id:</strong>
+  <%= @booking.vehicletype_id %>
+</p>
+
+<p>
+  <strong>Inquiry:</strong>
+  <%= @booking.booking_number %>
+</p>
+
+<p>
+  <strong>Airport:</strong>
+  <%= @booking.airport_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @booking.status %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @booking.booking_type %>
+</p>
+
+<p>
+  <strong>Arrival airline:</strong>
+  <%= @booking.arrival_airline %>
+</p>
+
+<p>
+  <strong>Arrival flight number:</strong>
+  <%= @booking.arrival_flight_number %>
+</p>
+
+<p>
+  <strong>Arrival fliyng from:</strong>
+  <%= @booking.arrival_fliyng_from %>
+</p>
+
+<p>
+  <strong>Arrival date:</strong>
+  <%= @booking.arrival_date %>
+</p>
+
+<p>
+  <strong>Arrival time:</strong>
+  <%= @booking.arrival_date %>
+</p>
+
+<p>
+  <strong>Departure airlines:</strong>
+  <%= @booking.departure_airlines %>
+</p>
+
+<p>
+  <strong>Departure flight number:</strong>
+  <%= @booking.departure_flight_number %>
+</p>
+
+<p>
+  <strong>Departure date:</strong>
+  <%= @booking.departure_date %>
+</p>
+
+<p>
+  <strong>Departure time:</strong>
+  <%= @booking.departure_date %>
+</p>
+
+<p>
+  <strong>Arrival pick up time:</strong>
+  <%= @booking.arrival_pick_up_time %>
+</p>
+
+<p>
+  <strong>Departure pick up time:</strong>
+  <%= @booking.departure_pick_up_time %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @booking.price %>
+</p>
+
+<p>
+  <strong>Arrival address line 1:</strong>
+  <%= @booking.arrival_address_line_1 %>
+</p>
+
+<p>
+  <strong>Arrival address line 2:</strong>
+  <%= @booking.arrival_address_line_2 %>
+</p>
+
+<p>
+  <strong>Departure address line 1:</strong>
+  <%= @booking.departure_address_line_1 %>
+</p>
+
+<p>
+  <strong>Departure address line 2:</strong>
+  <%= @booking.departure_address_line_2 %>
+</p>
+
+<p>
+  <strong>Passengers:</strong>
+  <%= @booking.passengers %>
+</p>
+
+<p>
+  <strong>Baggages:</strong>
+  <%= @booking.baggages %>
+</p>
+
+<p>
+  <strong>Hand laggages:</strong>
+  <%= @booking.hand_laggages %>
+</p>
+
+<p>
+  <strong>Baby:</strong>
+  <%= @booking.baby %>
+</p>
+
+<p>
+  <strong>Child:</strong>
+  <%= @booking.child %>
+</p>
+
+<p>
+  <strong>Booster:</strong>
+  <%= @booking.booster %>
+</p>
+
+<p>
+  <strong>Special requirements:</strong>
+  <%= @booking.special_requirements %>
+</p>
+
+<%= link_to (I18n.t 'button.edit'), edit_booking_path(@booking), class: "btn btn-sm btn-primary" %> |
+<%= link_to (I18n.t 'button.back'), bookings_path, class: "btn btn-sm btn-warning" %>

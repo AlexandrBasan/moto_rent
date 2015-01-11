@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @airport.code %>
+</p>
+
+<p>
+  <strong>Cc fips:</strong>
+  <%= @airport.cc_fips %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @airport.name %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @airport.lat %>
+</p>
+
+<p>
+  <strong>Long:</strong>
+  <%= @airport.long %>
+</p>
+
+<p>
+  <strong>Fixed fare:</strong>
+  <%= @airport.fixed_fare %>
+</p>
+
+<%= link_to (I18n.t 'button.edit'), edit_airport_path(@airport), class: "btn btn-sm btn-primary" %> |
+<%= link_to (I18n.t 'button.back'), airports_path, class: "btn btn-sm btn-warning" %>

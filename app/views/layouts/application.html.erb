@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="author" content="Created by Alexandr Basan - www.proalab.com" />
+  <title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag "application", media: "all",
+                          "data-turbolinks-track" => true %>
+  <!--CSS for mobile device-->
+  <!--<%= stylesheet_link_tag 'mobile' if mobile_device? %>-->
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+  <%= favicon_link_tag '16_16.png' %>
+  <!-- Web Fonts -->
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet" type="text/css">
+
+  <%= stylesheet_link_tag "owl.carousel" %>
+  <%= stylesheet_link_tag "owl.theme" %>
+
+  <%= javascript_include_tag "owl.carousel" %>
+  <%= javascript_include_tag "jquery.stellar.min" %>
+  <%= javascript_include_tag "custom" %>
+  <!--http://eonasdan.github.io/bootstrap-datetimepicker-->
+  <%= javascript_include_tag "moment" %>
+  <%= javascript_include_tag "bootstrap-datetimepicker" %>
+
+
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&language=en"></script>
+  <%= javascript_include_tag "google_maps_show" %>
+  <script>
+      google.maps.event.addDomListener(window, 'load', show);
+  </script>
+
+  <script type="text/javascript">
+      $(document).ready(function(){
+          $("#myCarousel").carousel({
+              interval : 5000,
+              pause: false
+          });
+      });
+  </script>
+  <!--Google Analytics-->
+
+  <!--Google Analytics-->
+</head>
+<% initialize_functions = "codeAddress();" %>
+<body onload="<%= initialize_functions %>">
+<%= render 'layouts/header' %>
+<% if signed_in? %>
+    <%= render 'layouts/menu/sidebar' %>
+<% end %>
+<!--Styling for not signed user -->
+<% if signed_in? %>
+    <div class="data">
+<% end %>
+<% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+<%= content = yield %>
+<!--Back To Top Button-->
+<% if content.length > 1200 %>
+    <%= link_to("#top") do %>
+        <div id="backtotop" style="display: block;">
+        </div>
+    <% end %>
+<% end %>
+</div>
+<div class="container" style="padding-left: 5%;">
+  <% cache "footer" do %>
+  <%= render 'layouts/footer' %>
+  <% end %>
+  <%= debug(params) if Rails.env.development? %>
+</div>
+</body>
+</html>

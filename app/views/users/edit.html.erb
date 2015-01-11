@@ -1,0 +1,54 @@
+<% provide(:title, "Edit user") %>
+<h1 align="center"><%= t :update_your_profile %></h1>
+
+<div class="row">
+
+    <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+      <div class="col-md-3 col-md-offset-1" align="center">
+        <%= gravatar_for @user %>
+        <p ><a href="http://gravatar.com/emails" target="_blank"><button type="button" class="btn btn-primary btn-xs"><%= t ('button.change') %></button></a></p>
+        <div class="row">
+          <div class="col-md-1" align="center">
+            <%= f.check_box :subscription %>
+          </div>
+          <div class="col-md-9">
+            <b><%= t :email %> </b> <%= f.label (t 'unsubscribe_block.subscription') %>
+          </div>
+        </div>
+        </div>
+      <div class="col-md-6 col-md-offset-1">
+        <div class="form-group">
+          <%= f.label (t :name) %>
+          <%= f.text_field :name %>
+        </div>
+
+        <%= f.label (t :email) %>
+        <%= f.text_field :email %>
+
+        <%= f.label (t :password) %>
+        <%= f.password_field :password %>
+
+        <!--<%= f.label :password_confirmation, "Confirm Password" %>-->
+        <%= f.label (t :password_confirmation) %>
+        <%= f.password_field :password_confirmation %>
+
+        <div class="row">
+          <div class="col-md-6">
+            <!--Save data in database use option-->
+            <%= f.label (t :countrycode) %>
+            <%= f.select :countrycode, options_for_select(Country.correct_country, selected: :option, :selected => current_user.countrycode) %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label (t :phone) %>
+            <%= f.text_field :phone, class: "form-control" %>
+          </div>
+        </div>
+
+
+
+        <p align="center"><%= f.submit (t :save_changes), class: "btn btn-sm btn-primary" %></p>
+      </div>
+    <% end %>
+
+</div>

@@ -1,0 +1,65 @@
+<% @airports = Airport.all %>
+<% @order = Order.new %>
+<% @user = User.new %>
+
+<% @airport = params[:airport_id] %>
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <ul id="progressbar">
+        <li id="step_1_progress" class="active">Choice main information</li>
+        <li id="step_2_progress">Choose your transfer</li>
+        <li id="step_3_progress">Add Details</li>
+        <li id="step_4_progress">Pay</li>
+        <li id="step_5_progress">Confirmation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
+<div class="section gray-bg">
+  <%= form_for(@booking) do |f| %>
+      <% if @booking.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+            <ul>
+              <% @booking.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <div id="booking_small_information">
+        <%= render "bookings/booking_info"%>
+      </div>
+      <div id="step_1">
+      <%= render "bookings/step_1", :f => f %>
+      </div>
+      <div id="step_2">
+      <div id="destination">
+      </div>
+      </div>
+      <div id="step_3">
+      <%= render "bookings/step_3", :f => f %>
+      </div>
+      <div id="step_4">
+      <%= render "bookings/step_4", :f => f %>
+      </div>
+      <div id="step_5">
+      <%= render "bookings/step_5", :f => f %>
+      </div>
+
+      <div class="actions" id="booking_actions">
+
+        <%= f.submit (t 'button.ok'), class: "btn btn-sm btn-primary" %>
+      </div>
+
+      <div class="actions" id="booking_actions_previous">
+        <%= link_to (I18n.t 'button.back'), '', :onclick =>
+                "back_step(); return false;", remote: true, class: "btn btn-sm btn-warning", id: "back_button"%>
+      </div>
+      <%= render "bookings/scripts" %>
+  <% end %>
+  </div>
+</div>

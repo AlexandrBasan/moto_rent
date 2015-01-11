@@ -1,0 +1,4 @@
+json.array!(@bookings) do |booking|
+  json.extract! booking, :user_id, :supplier_id, :v_type_id, :inquiry_id, :airport_id, :status, :type, :arrival_airline, :arrival_flight_number, :arrival_fliyng_from, :arrival_date, :arrival_time, :departure_airlines, :departure_flight_number, :departure_date, :departure_time, :arrival_pick_up_time, :departure_pick_up_time, :price, :arrival_address_line_1, :arrival_address_line_2, :departure_address_line_1, :departure_address_line_2, :passengers, :baggages, :hand_laggages, :baby, :child, :booster, :special_requirements
+  json.url booking_url(booking, format: :json)
+end

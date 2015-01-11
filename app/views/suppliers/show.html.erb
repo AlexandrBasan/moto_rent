@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_email %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @supplier.address %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @supplier.name %>
+</p>
+
+
+<%= link_to (I18n.t 'button.edit'), edit_supplier_path(@supplier), class: "btn btn-sm btn-primary" %> |
+<%= link_to (I18n.t 'button.back'), suppliers_path, class: "btn btn-sm btn-warning" %>

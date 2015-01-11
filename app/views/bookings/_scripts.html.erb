@@ -1,0 +1,375 @@
+<!-- filter select from autocomplete -->
+<script>
+    jQuery.fn.filterByText = function(textbox) {
+        return this.each(function() {
+            var select = this;
+            var options = [];
+            $(select).find('option').each(function() {
+                options.push({value: $(this).val(), text: $(this).text()});
+            });
+            $(select).data('options', options);
+
+            $(textbox).bind('change keyup', function() {
+                var options = $(select).empty().data('options');
+                var search = $.trim($(this).val());
+                var regex = new RegExp(search,"gi");
+
+                $.each(options, function(i) {
+                    var option = options[i];
+                    if(option.value.match(regex) !== null) {
+                        $(select).append(
+                                $('<option>').text(option.text).val(option.value)
+                        );
+
+                        //
+                        $("#arrival_address_line_1").trigger('change');
+
+                    }
+                });
+            });
+        });
+    };
+</script>
+<script>
+    $(function() {
+        $('#arrival_address_line_1').filterByText($('#booking_airport_id'));
+
+    });
+</script>
+<script>
+    $(function(){
+        $("#arrival_address_line_1").change(function(){
+            text_selected = $( "#arrival_address_line_1 option:selected" ).text();
+
+            //dest = $('#booking_airport_id').val
+            $('#booking_arrival_address_line_1').val(text_selected);
+            //alert(dest);
+            //alert('changed ' + text_selected);
+        });
+    });
+</script>
+<!-- filter select from autocomplete -->
+
+<!-- Autocomplete Airport name -->
+<script>
+    $("#airport_name").autocomplete({
+        source:$('#airport_name').data('autocomplete-source'),
+        select: function(e, ui) {
+            e.preventDefault() // <--- Prevent the value from being inserted.
+            $(this).val(ui.item.label)
+            $('#booking_airport_id').val(ui.item.value)
+            $(":input#booking_airport_id").trigger('change');
+            //alert(ui.item.value);
+            $('#destination').hide();
+            $('#destination').show();
+            $('#destination_result').remove();
+        }
+    });
+    //alert("this loaded");
+</script>
+<!-- Autocomplete Airport name -->
+
+<!-- Date time picker -->
+<script type="text/javascript">
+    var d = new Date();
+    var day = d.getDate()+2;
+    var year = d.getFullYear();
+    var month = d.getMonth()+1;
+    var formated = month + "/" + day + "/" + year;
+
+
+    $(function () {
+        $('#datetimepicker1').datetimepicker(
+                {
+                    useSeconds: false,
+                    showToday: true,
+                    pick24HourFormat: true,
+                    useCurrent: false,
+                    minDate:formated
+                }
+        );
+    });
+
+</script>
+<script type="text/javascript">
+    var d = new Date();
+    var day = d.getDate()+2;
+    var year = d.getFullYear();
+    var month = d.getMonth()+1;
+    var formated = month + "/" + day + "/" + year;
+    $(function () {
+        $('#datetimepicker2').datetimepicker(
+                {
+                    useSeconds: false,
+                    showToday: true,
+                    pick12HourFormat: false,
+                    useCurrent: false,
+                    minDate: formated
+                }
+        );
+    });
+</script>
+<script type="text/javascript">
+    var d = new Date();
+    var day = d.getDate()+2;
+    var year = d.getFullYear();
+    var month = d.getMonth()+1;
+    var formated = month + "/" + day + "/" + year;
+    $(function () {
+        $('#datetimepicker3').datetimepicker(
+                {
+                    useSeconds: false,
+                    showToday: true,
+                    pick24HourFormat: true,
+                    useCurrent: false,
+                    minDate: formated
+                }
+        );
+    });
+</script>
+<script type="text/javascript">
+    var d = new Date();
+    var day = d.getDate()+2;
+    var year = d.getFullYear();
+    var month = d.getMonth()+1;
+    var formated = month + "/" + day + "/" + year;
+    $(function () {
+        $('#datetimepicker4').datetimepicker(
+                {
+                    useSeconds: false,
+                    showToday: true,
+                    pick24HourFormat: true,
+                    useCurrent: false,
+                    minDate: formated
+                }
+        );
+    });
+</script>
+<!-- Date time picker -->
+
+<!-- Change link for step 1 booking form -->
+<script>
+    function change_link() {
+
+        if ( validate_step_1() == true ) {
+            var link = "<%= vehicletypes_for_booking_path(11,12,13,14) %>";
+            link = link.replace("_11&amp;12&amp;13&amp;14", "_");
+            var new_link;
+            var passangers = $( "#booking_passengers option:selected" ).val();
+            var baggages = $( "#booking_baggages option:selected" ).val();
+            var from = document.getElementById("booking_airport_id").value;
+            var to = document.getElementById("booking_arrival_address_line_1").value;
+
+            new_link = link + passangers + '&' + baggages + '&' + from + '&' + to;
+            var res = new_link.replace(("?locale=" + '<%= I18n.locale %>'), "") + "?locale=" + '<%= I18n.locale %>';
+            //alert(res);
+            var yourElement = document.getElementById('first_step_complete_');
+            yourElement.setAttribute('href', res);
+            document.getElementById('first_step_complete_').click();
+            $('#step_1').hide();
+            $('#step_2').show();
+            booking_information();
+            $('#booking_small_information').show();
+            jQuery('#step_2_progress').addClass('active');
+            $('#booking_actions_previous').show();
+            //alert(true);
+        }
+        else {
+            //alert(false);
+        }
+
+    }
+</script>
+<!-- Change link for step 1 booking form -->
+
+<!-- Book link step 2 -->
+<script>
+    function book(vehicletype_id) {
+        var id = vehicletype_id;
+        document.getElementById('booking_vehicletype_id').value = id;
+        $('#step_2').hide();
+        $('#booking_small_information').hide();
+        $('#booking_small_information').show();
+        $('#step_3').show();
+        jQuery('#step_3_progress').addClass('active');
+        booking_information();
+
+
+        var link = "<%= vehicletype_path(11) %>";
+        link = link.replace("11", vehicletype_id);
+        var new_link;
+        new_link = link;
+        var res = new_link.replace(("?locale=" + '<%= I18n.locale %>'), "") + "?locale=" + '<%= I18n.locale %>';
+        //alert(res);
+        var yourElement = document.getElementById('booking_information_');
+        yourElement.setAttribute('href', res);
+        document.getElementById('booking_information_').click();
+    }
+</script>
+<!-- Book link step 2 -->
+
+<!-- Step 3 -->
+<script>
+    function step_3() {
+        $('#step_3').hide();
+        $('#booking_small_information').hide();
+        $('#booking_small_information').show();
+        $('#step_4').show();
+        jQuery('#step_4_progress').addClass('active');
+    }
+</script>
+<!-- Step 3 -->
+
+<!-- Scripts for form working -->
+<!-- Start booking form -->
+<script>
+    $(document).ready(function(){
+        $("#booking_small_information").hide();
+        $("#step_3").hide();
+        $("#step_4").hide();
+        $("#step_5").hide();
+        $("#booking_actions").hide();
+        $("#booking_actions_previous").hide();
+    });
+</script>
+<!-- Start booking form -->
+<script>
+    $(document).ready(function(){
+        $("#departure_calendar").show();
+        $("#where_go").hide();
+        $("input:radio[name='booking[type]']").change(function(){
+            if(this.value == 'return' && this.checked){
+                $("#departure_calendar").show();
+                $("#where_go").hide();
+            }else{
+                $("#departure_calendar").hide();
+                $("#where_go").show();
+                document.getElementById('booking_departure_date').value = '';
+            }
+        });
+    });
+</script>
+<!-- Scripts for form working -->
+
+<!-- jQuery Ajax validation -->
+<script>
+    function validate_step_1() {
+        var form = $( "#new_booking" );
+        form.validate({
+            validClass: "valid",
+            errorClass: "error",
+            success: function(label) {
+                label.addClass("valid").text("Ok!")
+            },
+            //submitHandler: function() { $('#new_user').submit(); },
+            rules: {
+                'booking[airport_id]': {required: true},
+                'booking[arrival_address_line_2]': {required: true}
+            }
+        });
+        if ( form.valid() == true ) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+
+<script>
+    function validate_airport_name() {
+    var validator = $( "#new_booking" ).validate();
+    validator.element( "#airport_name" );
+        if (validator.element( "#airport_name" ) == true){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+
+<script>
+    $.validator.addMethod(
+            "regex",
+            function(value, element, regexp) {
+                var re = new RegExp(regexp);
+                return this.optional(element) || re.test(value);
+            },
+            "Please check your input."
+    );
+    $(document).ready(function () {
+        $('#new_booking').validate({
+            validClass: "valid",
+            errorClass: "error",
+            success: function(label) {
+                label.addClass("valid").text("Ok!")
+            },
+            //submitHandler: function() { $('#new_user').submit(); },
+            rules: {
+                'booking[airport_id]': {required: true},
+                'booking[arrival_address_line_2]': {required: true}
+            }
+        });
+    });
+</script>
+<!-- jQuery Ajax validation -->
+
+<!-- Check current step -->
+<script>
+    function isshowed(element) {
+        if ( $(element).css('display') == 'none' ) {
+            return false;
+            //alert("false");
+        }
+        else {
+            return true;
+            //alert ('true');
+        }
+    }
+</script>
+<script>
+    function back_step() {
+        if (isshowed(document.getElementById('step_1')) == true) {
+            $("#booking_actions_previous").hide();
+            $('#booking_small_information').hide();
+        } else if (isshowed(document.getElementById('step_2')) == true) {
+            $('#step_2').hide();
+            $('#step_1').show();
+            $("#booking_actions_previous").hide();
+            jQuery('#step_2_progress').removeClass('active');
+        } else if (isshowed(document.getElementById('step_3')) == true) {
+            $('#step_3').hide();
+            $('#step_2').show();
+            jQuery('#step_3_progress').removeClass('active');
+        } else if (isshowed(document.getElementById('step_4')) == true) {
+            $('#step_4').hide();
+            $('#step_3').show();
+            jQuery('#step_4_progress').removeClass('active');
+        } else if (isshowed(document.getElementById('step_5')) == true) {
+            $('#step_5').hide();
+            $('#step_4').show();
+            jQuery('#step_5_progress').removeClass('active');
+        } else {
+            //$('#booking_actions').show();
+            alert ('else');
+        }
+
+    }
+</script>
+<!-- Check current step -->
+
+<!-- Booking information block -->
+<script>
+    function booking_information() {
+        var booking_type = $("input[name='booking[booking_type]']:checked").val();
+        var airport = document.getElementById('airport_name').value;
+        var time = document.getElementById('booking_arrival_date').value;
+        $('#l_airport').text(airport);
+        $('#l_arrival_date').text(time);
+        $('#l_booking_type').text(booking_type);
+        $('#l_passangers').text($( "#booking_passengers option:selected" ).text());
+        $('#l_address').text($( "#arrival_address_line_1 option:selected" ).text());
+    }
+</script>
+<!-- Booking information block -->

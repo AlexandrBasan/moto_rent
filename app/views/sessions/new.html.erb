@@ -1,0 +1,37 @@
+<% provide(:title, "Sign in") %>
+<h1 align="center"><%= t :sign_in %></h1>
+<div class="row">
+  <!-- OAuth login -->
+  <div class="col-md-2 col-md-offset-2">
+    <div class="well" style="padding-right: 240px;">
+      <div class="btn-group-vertical">
+        <%= link_to ("/auth/facebook") do %>
+            <button type="button" class="btn btn-primary" style="width: 220px;"><%= image_tag("facebook-white@2x.png", height: '40', width: '40') %> <%= (t 'sign_in_facebook') %></button>
+        <% end %>
+        <%= link_to ("/auth/twitter") do %>
+            <button type="button" class="btn btn-primary" style="width: 220px;"><%= image_tag("twitter-white@2x.png", height: '40', width: '40') %> <%= (t 'sign_in_twitter') %></button>
+        <% end %>
+        <%= link_to ("/auth/google_oauth2") do %>
+            <button type="button" class="btn btn-primary" style="width: 220px;"><%= image_tag("google-plus-white@2x.png", height: '40', width: '40') %> <%= (t 'sign_in_google') %></button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-md-offset-1">
+    <div class="well">
+    <%= form_for(:session, url: sessions_path) do |f| %>
+
+        <%= f.label (t :email) %>
+        <%= f.text_field :email %>
+
+        <%= f.label (t :password) %>
+        <%= f.password_field :password %>
+
+        <%= link_to (I18n.t 'password_reset'), new_password_reset_path %>
+
+        <%= f.submit (t :sign_in), class: "btn btn-sm btn-primary" %>
+    <% end %>
+    <p align="center" style="margin-bottom: -5px;"><%= t :new_user %> <%= link_to (I18n.t 'sign_up_now'), signup_path %></p>
+    </div>
+  </div>
+</div>

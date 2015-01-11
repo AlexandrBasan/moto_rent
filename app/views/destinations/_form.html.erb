@@ -1,0 +1,61 @@
+<%= form_for(@destination) do |f| %>
+  <% if @destination.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@destination.errors.count, "error") %> prohibited this destination from being saved:</h2>
+
+      <ul>
+      <% @destination.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :airport_id %><br>
+    <%= text_field_tag nil, nil, :id => 'airport_name', data: {autocomplete_source: Airport.order(:name).map { |t| { :label => t.name, :value => t.id } } } %>
+    <%= f.hidden_field :airport_id %>
+    <script>
+        $("#airport_name").autocomplete({
+            source:$('#airport_name').data('autocomplete-source'),
+            select: function(e, ui) {
+                e.preventDefault() // <--- Prevent the value from being inserted.
+                $(this).val(ui.item.label)
+                $('#destination_airport_id').val(ui.item.value)
+            }
+        });
+        //alert("this loaded");
+    </script>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :address_description %><br>
+    <%= f.text_field :address_description %>
+  </div>
+  <div class="field">
+    <%= f.label :avg_duration_min %><br>
+    <%= f.time_select :avg_duration_min %>
+  </div>
+  <div class="field">
+    <%= f.label :distance %><br>
+    <%= f.text_field :distance %>
+  </div>
+  <div class="field">
+    <%= f.label :lat %><br>
+    <%= f.text_field :lat %>
+  </div>
+  <div class="field">
+    <%= f.label :long %><br>
+    <%= f.text_field :long %>
+  </div>
+  <div class="actions">
+    <%= f.submit (t 'button.ok'), class: "btn btn-sm btn-primary" %>
+  </div>
+<% end %>

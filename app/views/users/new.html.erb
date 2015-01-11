@@ -1,0 +1,101 @@
+<% provide(:title, 'Sign up') %>
+<h1 align="center"><%= t :sign_up %>! <%= t ('main_page.its_free') %></h1>
+
+<script>
+    $(document).ready(function () {
+        $('#new_user').validate({
+            validClass: "valid",
+            errorClass: "error",
+            success: function(label) {
+                label.addClass("valid").text("Ok!")
+            },
+            //submitHandler: function() { $('#new_user').submit(); },
+            rules: {
+                'user[name]': {required: true, minlength: 2, maxlength: 30},
+                'user[email]': {required: true, email: true},
+                'user[password]': {required: true, minlength: 6},
+                'user[password_confirmation]': {required: true, equalTo: '#user_password'},
+                'user[phone]': {required: true, minlength: 9, maxlength: 10, digits: true},
+                'user[terms_of_service]': {required: true}
+            }
+        });
+    });
+</script>
+
+<div class="row" style="margin-right: 0px; margin-left: 0px;">
+  <div class="col-md-6 col-md-offset-3">
+
+    <div class="well">
+    <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <%= f.label (t :name) %>
+        <%= f.text_field :name %>
+
+        <%= f.label (t :email) %>
+        <%= f.text_field :email %>
+
+        <%= f.label (t :password) %>
+        <%= f.password_field :password %>
+
+        <!--<%= f.label :password_confirmation, "Confirmation" %>-->
+        <%= f.label (t :password_confirmation) %>
+        <%= f.password_field :password_confirmation %>
+
+          <div class="row">
+            <div class="col-md-6">
+              <!--Save data in database use option-->
+              <%= f.label (t :countrycode) %>
+              <%= f.select :countrycode, options_for_select(Country.correct_country, selected: :option) %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label (t :phone) %>
+              <%= f.text_field :phone, class: "form-control" %>
+            </div>
+          </div>
+        <%= f.label (t :company_type) %>
+            <%= f.select :role, options_for_select([[(t 'role.client'), "Client"], [(t 'role.partner'), "Partner"]], selected: :option, :selected => @user.role) %>
+          <%= f.hidden_field :invitation_token %>
+        <!--Terms of use and Privacy and security-->
+        <div class="row">
+          <div class="col-md-1"><%= f.check_box :terms_of_service %></div>
+          <div class="col-md-11">
+            <%= link_to(t("menu.terms"), terms_path, :target => "_blank") %>
+          </div>
+        </div>
+        </br>
+
+        <%= f.submit (t :create_my_account), class: "btn btn-sm btn-primary" %>
+    <% end %>
+    </div>
+  </div>
+  <!-- OAuth login -->
+  <div class="col-md-2">
+    <div class="well" style="padding-right: 240px;">
+    <strong><%= t ('or') %></strong>
+    <div class="btn-group-vertical">
+      <% if params[:invitation_token].nil? || params[:invitation_token].blank? %>
+          <%= link_to ("/auth/facebook") do %>
+              <button type="button" class="btn btn-default" style="width: 220px;"><%= image_tag("facebook-black@2x.png") %> <%= (t 'Sign in with Facebook') %></button>
+          <% end %>
+          <%= link_to ("/auth/twitter") do %>
+              <button type="button" class="btn btn-default" style="width: 220px;"><%= image_tag("twitter-black@2x.png") %> <%= (t 'Sign in with Twitter') %></button>
+          <% end %>
+          <%= link_to ("/auth/google_oauth2") do %>
+              <button type="button" class="btn btn-default" style="width: 220px;"><%= image_tag("google-plus-black@2x.png") %> <%= (t 'Sign in with Google') %></button>
+          <% end %>
+      <% else %>
+          <%= link_to ("/auth/facebook/" + params[:invitation_token]) do %>
+              <button type="button" class="btn btn-default" style="width: 220px;"><%= image_tag("facebook-black@2x.png") %> <%= (t 'Sign in with Facebook') %></button>
+          <% end %>
+          <%= link_to ("/auth/twitter/" + params[:invitation_token]) do %>
+              <button type="button" class="btn btn-default" style="width: 220px;"><%= image_tag("twitter-black@2x.png") %> <%= (t 'Sign in with Twitter') %></button>
+          <% end %>
+          <%= link_to ("/auth/google_oauth2/" + params[:invitation_token]) do %>
+              <button type="button" class="btn btn-default" style="width: 220px;"><%= image_tag("google-plus-black@2x.png") %> <%= (t 'Sign in with Google') %></button>
+          <% end %>
+      <% end %>
+    </div>
+      </div>
+  </div>
+</div>

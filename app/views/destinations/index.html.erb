@@ -1,0 +1,46 @@
+<h1 align="center"><%= (t 'destinations.destinations') %> <span class="badge"><%= @destinations.count %></span></h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Airport</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Address description</th>
+      <th>Avg duration min</th>
+      <th>Distance</th>
+      <th>Lat</th>
+      <th>Long</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @destinations.each do |destination| %>
+      <tr>
+        <td>
+          <% if destination.airport_id.nil? || destination.airport_id == 0 %>
+              <%= (t 'not_found') %>
+          <% elsif Airport.where(id: destination.airport_id).take.nil? %>
+              <%= (t 'not_found') %>
+          <% else %>
+              <%= Airport.where(id: destination.airport_id).take.name %>
+          <% end %></td>
+        <td><%= destination.name %></td>
+        <td><%= destination.address %></td>
+        <td><%= destination.address_description %></td>
+        <td><%= destination.avg_duration_min %></td>
+        <td><%= destination.distance %></td>
+        <td><%= destination.lat %></td>
+        <td><%= destination.long %></td>
+        <td><%= link_to (I18n.t 'button.show'), destination, class: "btn btn-sm btn-primary" %></td>
+        <td><%= link_to (I18n.t 'button.edit'), edit_destination_path(destination), class: "btn btn-sm btn-warning" %></td>
+        <td><%= link_to (I18n.t 'button.delete'), destination, method: :delete, data: {confirm: (t 'operations_confirmation.confirm')}, class: "btn btn-sm btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Destination', new_destination_path, class: "btn btn-sm btn-primary" %>

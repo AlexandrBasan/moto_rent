@@ -1,0 +1,55 @@
+<% @last_top_up = Order.where(user_id: 1).first %>
+<h1 align="center"><%= (t 'choice_payment_method') %></h1>
+    <div class="row">
+          <div class="col-xs-6 col-md-4">
+            <h4><p align="center"><%= (t 'payment_method.paypal') %></p></h4>
+            <p align="center"><img src="/assets/theme/payments_logo/paypal_logo.png"></p>
+            <%= form_tag("https://www.paypal.com/cgi-bin/webscr", method: "post") do %>
+                <input type="hidden" name="business" value="">
+                <!-- Specify a Buy Now button. -->
+                <input type="hidden" name="cmd" value="_xclick">
+                <!-- Specify details about the item that buyers will purchase. -->
+                <input type="hidden" name="item_name" value="">
+                <input type="hidden" name="item_number" value="1">
+                <input type="hidden" name="amount" value="1">
+                <input type="hidden" name="currency_code" value="1">
+                <input type="hidden" name="return" value="">
+                <!-- Display the payment button. -->
+                <%= submit_tag (t 'button.pay'), class: "btn btn-sm btn-primary" %>
+            <% end %>
+          </div>
+      <div class="col-xs-6 col-md-4">
+        <h4><p align="center"><%= (t 'payment_method.visa') %></p></h4>
+        <p align="center"><img src="/assets/theme/payments_logo/visa_logo.png"></p>
+        <%= form_tag("https://www.paypal.com/cgi-bin/webscr", method: "post") do %>
+            <input type="hidden" name="business" value="">
+            <!-- Specify a Buy Now button. -->
+            <input type="hidden" name="cmd" value="_xclick">
+            <!-- Specify details about the item that buyers will purchase. -->
+            <input type="hidden" name="item_name" value="">
+            <input type="hidden" name="item_number" value="1">
+            <input type="hidden" name="amount" value="1">
+            <input type="hidden" name="currency_code" value="1">
+            <input type="hidden" name="return" value="">
+            <!-- Display the payment button. -->
+            <%= submit_tag (t 'button.pay'), class: "btn btn-sm btn-primary" %>
+        <% end %>
+      </div>
+      <div class="col-xs-6 col-md-4">
+        <h4><p align="center"><%= (t 'payment_method.mastercard') %></p></h4>
+        <p align="center"><img src="/assets/theme/payments_logo/mastercard_logo.png"></p>
+        <%= form_tag("https://www.paypal.com/cgi-bin/webscr", method: "post") do %>
+            <input type="hidden" name="business" value="">
+            <!-- Specify a Buy Now button. -->
+            <input type="hidden" name="cmd" value="_xclick">
+            <!-- Specify details about the item that buyers will purchase. -->
+            <input type="hidden" name="item_name" value="">
+            <input type="hidden" name="item_number" value="1">
+            <input type="hidden" name="amount" value="1">
+            <input type="hidden" name="currency_code" value="1">
+            <input type="hidden" name="return" value="">
+            <!-- Display the payment button. -->
+            <%= submit_tag (t 'button.pay'), class: "btn btn-sm btn-primary" %>
+        <% end %>
+      </div>
+    </div>

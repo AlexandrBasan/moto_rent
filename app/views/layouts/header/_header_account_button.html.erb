@@ -1,0 +1,13 @@
+<!--Account button in header check role-->
+<% if current_user && current_user.role == "" %>
+
+<% elsif current_user && current_user.role == "" %>
+    <% if @user_company.nil? %>
+    <% else %>
+
+    <% end %>
+<% else %>
+<% end %>
+<li><%= link_to (I18n.t 'settings'), edit_user_path(current_user) %></li>
+<li>
+  <%= link_to (I18n.t 'sign_out'), signout_path, method: "delete" %></li>

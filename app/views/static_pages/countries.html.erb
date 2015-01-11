@@ -1,0 +1,59 @@
+<% provide(:title, 'Countries') %>
+<h1 align="center"><%= (t 'county.countries') %></h1>
+<h4 align="center"><%= (t 'county.country_codes') %></h4>
+<p>
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th><%= (t 'county.country') %></th>
+    <th><%= (t 'country.code') %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% Country.correct_country.each do |correct_country| %>
+  <tr>
+      <td><%= correct_country[0] %></td>
+      <td><%= correct_country[1] %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+</p>
+<h4 align="center"><%= (t 'county.currency') %></h4>
+<p>
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th><%= (t 'county.country') %></th>
+    <th><%= (t 'country.code') %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% Country.correct_currency.each do |correct_country| %>
+      <tr>
+        <td><%= correct_country[0] %></td>
+        <td><%= correct_country[1] %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+</p>
+<h4 align="center"><%= (t 'county.alpha_2') %></h4>
+<p>
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th><%= (t 'county.country') %></th>
+    <th><%= (t 'country.code') %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% Country.correct_alpha2.each do |correct_country| %>
+      <tr>
+        <td><%= correct_country[0] %></td>
+        <td><%= correct_country[1] %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+</p>

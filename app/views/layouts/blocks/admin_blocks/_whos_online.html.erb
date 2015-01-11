@@ -1,0 +1,17 @@
+<% @online = User.where("last_seen_at > ?", 15.minutes.ago).paginate(page: params[:page]) %>
+<h5><%= t :whos_online %> - <span class="badge"><%= @online.count %></span> <%= t ('users_online') %></h5>
+<table align="left" border="0" cellpadding="1" cellspacing="1" style="width:100%" class="table">
+  <tbody>
+  <tr>
+    <td>
+      <ul class="unstyled">
+        <% @online.each do |online| %>
+            <%= link_to (online) do %>
+                <li><%= online.email %></li>
+            <% end %>
+        <% end %>
+      </ul>
+    </td>
+  </tr>
+  </tbody>
+</table>

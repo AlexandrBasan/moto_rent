@@ -1,0 +1,13 @@
+<h1 align="center"><%= t ('unsubscribe_block.unsubscribe') %></h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+<%= form_tag unsubscribe_action_path, :method => :post do %>
+        <p align="center"><%= t ('unsubscribe_block.enter_email') %></p>
+    <div class="field">
+      <%= label_tag (t :email) %>
+      <%= text_field_tag :email, params[:email] %>
+    </div>
+    <div class="actions"><%= submit_tag (I18n.t 'unsubscribe_block.unsubscribe'), class: "btn btn-sm btn-primary" %></div>
+<% end %>
+  </div>
+</div>

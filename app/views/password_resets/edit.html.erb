@@ -1,0 +1,26 @@
+<h1 align="center"><%= t ('password_reset_block.reset_password') %></h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+<%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+    <% if @user.errors.any? %>
+        <div class="error_messages">
+          <h2>Form is invalid</h2>
+          <ul>
+            <% for message in @user.errors.full_messages %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="field">
+      <%= f.label (t :password) %>
+      <%= f.password_field :password %>
+    </div>
+    <div class="field">
+      <%= f.label (t :password_confirmation) %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+    <div class="actions"><%= f.submit (I18n.t 'password_reset_block.update_password'), class: "btn btn-sm btn-primary" %></div>
+<% end %>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<script>
+    $(document).ready(function () {
+        $('#new_user').validate({
+            validClass: "valid",
+            errorClass: "error",
+            success: function(label) {
+                label.addClass("valid").text("Ok!")
+            },
+            //submitHandler: function() { $('#new_user').submit(); },
+            rules: {
+                'user[name]': {required: true, minlength: 2, maxlength: 30},
+                'user[email]': {required: true, email: true},
+                'user[phone]': {required: true, minlength: 9, maxlength: 10, digits: true}
+            }
+        });
+    });
+</script>
+
+<div class="row" style="margin-right: 0px; margin-left: 0px;">
+  <div class="col-md-12">
+
+    <div class="well">
+    <%= form_for(@user, remote: true, :url => { :controller => 'users', :action => 'create' }) do |u| %>
+        <%= render 'shared/error_messages', object: u.object %>
+
+        <%= u.label (t :name) %>
+        <%= u.text_field :name %>
+
+        <%= u.label (t :email) %>
+        <%= u.text_field :email %>
+
+          <% require 'securerandom' %>
+          <% @pass = SecureRandom.hex(4) %>
+          <%= u.hidden_field :password, :value => @pass %>
+          <%= u.hidden_field :password_confirmation, :value => @pass %>
+
+          <div class="row">
+            <div class="col-md-6">
+              <!--Save data in database use option-->
+              <%= u.label (t :countrycode) %>
+              <%= u.select :countrycode, options_for_select(Country.correct_country, selected: :option) %>
+            </div>
+            <div class="col-md-6">
+              <%= u.label (t :phone) %>
+              <%= u.text_field :phone, class: "form-control" %>
+            </div>
+          </div>
+          <%= u.hidden_field :role, :value => "Client" %>
+          <%= u.hidden_field :invitation_token %>
+
+        <%= u.submit (t :create_my_account), class: "btn btn-sm btn-primary", remote: true  %>
+    <% end %>
+    </div>
+  </div>
+</div>

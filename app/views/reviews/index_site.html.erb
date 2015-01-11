@@ -1,0 +1,35 @@
+<div class="pages page-blog-list" id="page-blog-list">
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1 class="line-divider" id="blog" name="blog" style="text-align: center"><%= (t 'menu.reviews') %></h1>
+    </header>
+    <!-- End Header -->
+
+    <div class="row-fluid">
+      <div class="col-md-12">
+        <!-- Article -->
+        <%= will_paginate %>
+        <% @reviews.each do |blog| %>
+            <article class="clearfix blogpost object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="200">
+              <div class="blogpost-body">
+                <div>
+                  <img src="<%= blog.image_link %>" class="img-circle">
+                </div>
+                <div class="blogpost-content">
+                  <header>
+                    <h3 class="title"><%= blog.title %></h3>
+                  </header>
+                  <p style="text-align: justify">"<%= blog.review %>"</p>
+                </div>
+              </div>
+              <footer class="clearfix">
+               <span style="text-align: right">- <%= blog.name %></span>
+              </footer>
+            </article>
+            <% end %>
+        <%= will_paginate %>
+      </div>
+    </div>
+  </div>
+</div>

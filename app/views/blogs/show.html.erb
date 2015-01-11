@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<h1>
+      <%= @blog.title %>
+    </h1>
+
+    <p>
+      <strong>Title:</strong>
+      <%= @blog.title %>
+    </p>
+
+    <p>
+      <strong>Content:</strong>
+      <%= @blog.content %>
+    </p>
+
+    <p>
+      <strong>Role:</strong>
+      <%= @blog.role %>
+    </p>
+
+    <p>
+      <strong>Language:</strong>
+      <%= @blog.language %>
+    </p>
+
+
+<%= link_to (I18n.t 'button.edit'), edit_blog_path(@blog), class: "btn btn-warning btn-sm" %> |
+<%= link_to (I18n.t 'button.back'), blogs_path, class: "btn btn-primary btn-sm" %>

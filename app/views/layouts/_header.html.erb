@@ -1,0 +1,45 @@
+<!--<header class="navbar navbar-fixed-top navbar-inverse">-->
+<header class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to image_tag("logo.png", alt: ""), root_path, :class => "brand" %>
+      <nav>
+        <ul class="nav nav-pills pull-right">
+          <%= render 'layouts/header/company' %>
+          <% if signed_in? %>
+              <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <%= t :account %> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <!--Check user role and render Account Button-->
+                  <%= render 'layouts/header/header_account_button' %>
+                </ul>
+              </li>
+          <% else %>
+              <!--<li><%= link_to (I18n.t 'menu.home'), root_path %></li>-->
+              <li><%= link_to (I18n.t 'menu.transfers'), transfers_path %></li>
+              <li><%= link_to (I18n.t 'menu.booking'), new_booking_path %></li>
+              <li><%= link_to (I18n.t 'menu.about_us'), about_path %></li>
+              <li><%= link_to (I18n.t 'menu.contact_us'), contact_path %></li>
+              <li><%= link_to (I18n.t 'menu.reviews'), all_reviews_path %></li>
+              <li><%= link_to (I18n.t 'menu.blog'), all_blogs_path %></li>
+              <li><%= link_to (I18n.t 'menu.partners'), partners_path %></li>
+              <li><%= link_to (I18n.t 'sign_in'), signin_path %></li>
+          <% end %>
+          <!--<li><%= link_to "Home", root_path %></li>-->
+          <!--<li><%= link_to image_tag("/assets/theme/help.png", alt: "Help"), help_path %></li>-->
+          <!--<li id="fat-menu" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <%= image_tag("/assets/theme/eng.png", alt: "EN")+ (" EN") %>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to image_tag("/assets/theme/eng.png", alt: "EN")+ (" EN"), params.merge({:locale => :en}) %></li>
+            </ul>
+          </li>-->
+          <li></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

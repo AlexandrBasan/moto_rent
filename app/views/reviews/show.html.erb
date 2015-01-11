@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Image link:</strong>
+  <%= @review.image_link %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @review.name %>
+</p>
+
+<p>
+  <strong>Language:</strong>
+  <%= @review.language %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @review.title %>
+</p>
+
+<p>
+  <strong>Review:</strong>
+  <%= @review.review %>
+</p>
+
+<p>
+  <strong>Show:</strong>
+  <%= @review.show %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @review.link %>
+</p>
+
+<%= link_to (I18n.t 'button.edit'), edit_review_path(@review), class: "btn btn-sm btn-primary" %> |
+<%= link_to (I18n.t 'button.back'), reviews_path, class: "btn btn-sm btn-warning" %>

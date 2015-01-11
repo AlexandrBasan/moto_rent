@@ -1,0 +1,14 @@
+<!--Sidebar left-->
+<div class="span3 bs-docs-sidebar">
+  <ul class="nav nav-list bs-docs-sidenav affix">
+    <!--Admin user menu-->
+    <% if current_user.try(:admin?) %>
+        <%= render 'layouts/menu/sidebar_menu_admin' %>
+    <% elsif current_user && current_user.role == "Partner" %>
+        <%= render 'layouts/menu/sidebar_menu_partner' %>
+    <% elsif current_user && current_user.role == "Client" %>
+        <%= render 'layouts/menu/sidebar_menu_client' %>
+    <% else %>
+    <% end %>
+  </ul>
+    </div>

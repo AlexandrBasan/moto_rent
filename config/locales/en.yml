@@ -1,0 +1,274 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  main_page:
+    sign_up_now: "Sign up now!"
+    welcome_to_saas_30: "Welcome to _________"
+    small_about: ""
+    its_free: "- it's free"
+  sign_up: "Sign up"
+  sign_in: "Sign in"
+  please_sign_in: "Please sign in."
+  already_registered: "Already registered? - "
+  name: "Name"
+  email: "E-mail"
+  password: "Password"
+  password_confirmation: "Confirmation"
+  phone: "Phone"
+  countrycode: "Country code"
+  password_reset: "Forgot your password?"
+  create_my_account: "Create my account"
+  new_user: "New user?"
+  sign_up_now: "Sign up now!"
+  or: "or"
+  sign_in_facebook: "Sign in with Facebook"
+  sign_in_twitter: "Sign in with Twitter"
+  sign_in_google: "Sign in with Google"
+  preview: "Preview"
+  docs: "Company documents"
+  help: "Help"
+  choice_payment_method: "Select payment method"
+  collaborators: "Collaborators"
+  collaborators_stuff:
+    following: "Following"
+    follower: "Follower"
+    your_team: "Your team"
+    you_a_team_member: "You a team member"
+    invite: "Invite"
+    please_enter_your_email: "Please enter your email for confirmation."
+  payment_method:
+    paypal: "PayPal"
+    visa: "Visa"
+    mastercard: "MasterCard"
+    success: "Success"
+    decline: "Fail"
+    wait: "Wait"
+    return: "Return"
+    commission: "-"
+    writing_down: "Writing down"
+    convert_to_usd: "Sorry, but we don't have payment system in your country, so we have to convert your currency into USD."
+  language:
+    en: "EN"
+    ru: "RU"
+  list:
+    blog: "Blogs list"
+  complete: "Complete"
+    #flash messages
+  flash:
+    welcome_to_saas: "Welcome to the _________!"
+    please_create_company: "Please create your company"
+    invalid_email/password_combination: "Invalid email/password combination"
+    social_network_login_error: "Sorry something wrong, please register without social networks, or login if you already registered."
+    profile_updated: "Profile updated"
+    access_deny_text: "Sorry, you dont have permission to access to this page"
+    attention: "Attention!"
+    not_found: "Not found"
+    success: "Payment success"
+    success_repeat: "This payment already done"
+    decline: "Payment decline"
+    wait: "Payment wait"
+    session_expired: "Your session has expired."
+    record_already_exist: "Record already exist."
+    sorry: "Sorry, we doesn't have any transfers for this directions"
+  notice:
+    error: "The form contains "
+    file_format_error: "Unknown file type "
+    import_success: "Import was success completed"
+    import_error: "Import error"
+  save_changes: "Save changes"
+  update_your_profile: "Update your profile"
+  change: "change"
+  created_at: "Created at"
+  users: "Users"
+  transaction_history: "Transaction history"
+  top_up_history: "Top up history"
+  oauth_consumer: "Oauth consumer"
+  profile: "Profile"
+  settings: "Settings"
+  sign_out: "Sign out"
+  log_out: "Logout"
+  sign_in: "Sign in"
+  account: "Account"
+  not_found: "-"
+  menu:
+    home: "Home"
+    about_us: "About us"
+    contact_us: "Contact us"
+    terms: "Terms and conditions"
+    my_booling: "My Booking"
+    partners: "Partners"
+    blog: "Blog"
+    reviews: "Reviews"
+    transfers: "Transfers"
+    booking: "Booking"
+    countries_list: "Countries list"
+    users: "Users"
+  menu_agent:
+    my_orders: "My orders"
+  county:
+    country: "Country"
+    countries: "Countries"
+    country_codes: "Country codes"
+    currency: "Currency"
+    alpha_2: "Alpha2 numbers"
+    code: "Code"
+  blog:
+    blogs: "Blogs"
+    create_blog: "Create blog"
+    latest_news: "Latest news"
+    get_social: "Get social"
+  review:
+    reviews: "Reviews"
+    create_review: "Create review"
+    latest_news: "Latest reviews"
+  airports:
+    airports: "Airports"
+  suppliers:
+    suppliers: "Suppliers"
+  destinations:
+    destinations: "Destinations"
+  destination_fares:
+    destination_fares: "Destination fares"
+  vehicletypes:
+    vehicletypes: "Vehicle types"
+  orders:
+    order_status: "Order status"
+    payment_information: "Payment information"
+    operation: "Operation"
+    orders: "Orders"
+  booking:
+    bookings: "Bookings"
+    return: "Return"
+    one_way: "One way"
+    book_now: "Book now"
+    airport_to_resort: "Airport to resort"
+    resort_to_airport: "Resort to airport"
+    new: "New booking"
+  why:
+    title: "Do you need help or more information about booking your transfer?"
+    subtitle: ""
+    tab_1_name: "Very Flexible"
+    tab_2_name: "24/7 Support"
+    tab_3_name: "100% Responsive"
+    tab_4_name: "Well Documented"
+    tab_2_left_text: "If you have any question about booking, please contact us via"
+  parallax:
+    main: "Do you need perfect transfer from airport?"
+    link: "Make booking with discount -10%"
+  user_type: "User type"
+  user_role: "User role"
+  role:
+    partner: "Partner"
+    client: "Client"
+    Administrator: "Administrator"
+    all: "All"
+  prefix:
+    currency_label: "Currency"
+    currency: "$"
+    dollar: "USD"
+    percent: "%"
+    uah: "UAH"
+    rub: "RUB"
+    byr: "BYR"
+    eur: "EUR"
+    nzd: "NZD"
+    aud: "AUD"
+    pln: "PLN"
+    weight: "lbs."
+    distance: "км."
+    quantity: "pcs."
+    centimetre: "cm."
+  summ_string: "Sum"
+  date_string: "Date"
+  whos_online: "Who's online:"
+  users_online: "users online"
+  last_seen_at: "Last seen at"
+  news: "News"
+  read_more: "Read more"
+  button:
+    show: "Show"
+    quick: "Preview"
+    edit: "Edit"
+    destroy: "Destroy"
+    delete: "Delete"
+    open: "Open"
+    ok: "Ok"
+    cancel: "Cancel"
+    add: "Add"
+    back: "Back"
+    restore: "Restore"
+    choice: "Select"
+    change: "Change"
+    changed: "Changed"
+    pay: "Pay"
+    save: "Save"
+    download: "Download"
+    import: "Import"
+    count: "Count"
+    check: "Check"
+    close: "Close"
+    next: "Next"
+  operations:
+    view: "View"
+    edit: "Edit"
+    delete: "Delete"
+    confirm: "Confirm"
+    yes: "Yes"
+    no: "No"
+  discount:
+    discount: "Discount"
+    new_discount: "New discount"
+    edit_discount: "Editing discount"
+  card_account:
+    card_number: "VISA/MasterCard card number"
+    card_holder: "VISA/MasterCard holder name"
+    card_bank: "VISA/MasterCard bank"
+    card_exp_month: "Card exp month"
+    card_exp_year: "Card exp year"
+    card_cvv: "Card CVV"
+  helper:
+    click_to_open: "Click to open"
+    access_deny: "Access Deny"
+    access_deny_text: "Sorry, you dont have permission to access to this page"
+    this_info_view_only: "This information showed only for check correct input."
+  helper_user_registration:
+    email: "A valid e-mail address. All e-mails from the system will be sent to this address. E-mail address is not made public and will only be used if you wish: to recover a password or to receive news or notifications by e-mail."
+  count: "Count"
+  sum: "Sum"
+  admin_block_user:
+    user_count: "Count users registered: "
+  operations_confirmation:
+    confirm: "Are you sure?"
+  password_reset_block:
+    reset_password: "Reset password"
+    update_password: "Update password"
+    password_expired: "Password reset has expired."
+    password_has_been_reset: "Password has been reset!"
+    email_reset_password_send: "Email sent with password reset instructions."
+  unsubscribe_block:
+    unsubscribe: "Unsubscribe"
+    enter_email: "Enter your email address below to unsubscribe from our email communications."
+    unsubscribe_success: "You have successfully unsubscribed from our email communications."
+    unsubscribe_error: "Something wrong. You have not unsubscribed from our email communications."
+    subscription: "Subscription"
+
+

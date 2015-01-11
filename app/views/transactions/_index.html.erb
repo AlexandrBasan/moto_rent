@@ -1,0 +1,37 @@
+<!--<h3><p align="center"><%= (t 'transaction_history') %></p></h3>-->
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th><%= (t :date_string) %></th>
+    <th><%= (t 'summ_string') %></th>
+    <th><%= (t 'prefix.currency_label') %></th>
+    <th><%= (t 'orders.operation') %></th>
+    <th><%= (t 'inquiry.inquiry_id') %></th>
+  </tr>
+  </thead>
+
+  <div align="center">
+    <%= will_paginate %>
+  </div>
+
+  <tbody>
+  <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= time_format(transaction.created_at, @user_time_zone) %></td>
+        <td><%= sum_format(transaction.amount) %></td>
+        <td><%= transaction.currency %></td>
+        <% if transaction.operation == '-'%>
+            <td class="text-danger"><%= (t 'payment_method.commission') %></td>
+        <%elsif transaction.operation == '+' %>
+            <td class="text-success"><%= (t 'payment_method.return') %></td>
+        <% else %>
+            <td class="text-warning"><%= transaction.operation %></td>
+        <% end %>
+        <td><%= transaction.inquiry_number %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<div align="center">
+  <%= will_paginate %>
+</div>

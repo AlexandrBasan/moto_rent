@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Airport:</strong>
+  <%= @airport_name %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @destination.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @destination.address %>
+</p>
+
+<p>
+  <strong>Address description:</strong>
+  <%= @destination.address_description %>
+</p>
+
+<p>
+  <strong>Avg duration min:</strong>
+  <%= @destination.avg_duration_min %>
+</p>
+
+<p>
+  <strong>Distance:</strong>
+  <%= @destination.distance %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @destination.lat %>
+</p>
+
+<p>
+  <strong>Long:</strong>
+  <%= @destination.long %>
+</p>
+
+<%= link_to (I18n.t 'button.edit'), edit_destination_path(@destination), class: "btn btn-sm btn-primary" %> |
+<%= link_to (I18n.t 'button.back'), destinations_path, class: "btn btn-sm btn-warning" %>

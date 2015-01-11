@@ -1,0 +1,5 @@
+<h1 align="center"><%= (I18n.t 'button.import') %> (*.CSV) <%= t ('or') %> (*.XLS) <%= t ('or') %> (*.XLSX)</h1>
+<%= form_tag import_airports_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag (I18n.t 'button.import'), class: "btn btn-sm btn-primary" %>
+<% end %>

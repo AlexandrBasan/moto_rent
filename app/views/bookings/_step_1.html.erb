@@ -1,0 +1,189 @@
+<!-- Step 1 -->
+<div class="col-md-3" style="border-right: 1px solid lightgrey;">
+
+  <div class="row">
+    <%= f.label 'What type of transfer do you need?' %>
+    <div class="col-md-2">
+      <%= f.radio_button(:booking_type, "return", :checked => true) %>
+    </div>
+    <div class="col-md-10">
+      <b><%= t ('booking.return') %></b>
+    </div>
+    <div class="col-md-2">
+      <%= f.radio_button(:booking_type, "one way") %>
+
+    </div>
+    <div class="col-md-10">
+      <b><%= t ('booking.one_way') %></b>
+    </div>
+  </div>
+
+  <div class="row" id="where_go">
+    <div class="col-md-2">
+      <%= radio_button_tag(:where, "Airport to resort", :checked => true) %>
+    </div>
+    <div class="col-md-10">
+      <b><%= t ('booking.airport_to_resort') %></b>
+    </div>
+    <div class="col-md-2">
+      <%= radio_button_tag(:where, "Resort to airport") %>
+
+    </div>
+    <div class="col-md-10">
+      <b><%= t ('booking.resort_to_airport') %></b>
+    </div>
+  </div>
+
+  <div class="field">
+    <!--<%= f.label :user_id %>-->
+    <!--<br>-->
+    <%= f.hidden_field :user_id %>
+  </div>
+
+  <div class="field">
+    <!--<%= f.label :supplier_id %>-->
+    <!--<br>-->
+    <%= f.hidden_field :supplier_id %>
+  </div>
+  <div class="field">
+    <!--<%= f.label :booking_number %>-->
+    <!--<br>-->
+    <% if @booking.new_record? %>
+        <%= f.hidden_field :booking_number, :value => (Time.now.strftime(("%d%m%y%H%M%S") + rand(1..9).to_s)), :readonly => true %>
+    <% else %>
+        <%= f.hidden_field :booking_number, :readonly => true %>
+    <% end %>
+  </div>
+  <div class="field">
+    <!--<%= f.label :status %>-->
+    <!--<br>-->
+    <%= f.hidden_field :status %>
+  </div>
+
+</div>
+<div class="col-md-3" style="border-right: 1px solid lightgrey;">
+  <div class="field">
+    <%= f.label :airport_id %>
+    <br>
+    <% if @airport.nil? || @airport.empty? %>
+        <%= text_field_tag nil, nil, :id => 'airport_name', data: {autocomplete_source: Airport.order(:name).map { |t| { :label => t.name, :value => t.id } } } %>
+        <%= f.hidden_field :airport_id %>
+  <% else %>
+        <% if Airport.find_by_name(@airport).nil? %>
+            <%= text_field_tag nil, nil, :id => 'airport_name', data: {autocomplete_source: Airport.order(:name).map { |t| { :label => t.name, :value => t.id } } } %>
+            <%= f.hidden_field :airport_id %>
+        <% else %>
+            <%= text_field_tag nil, nil, :id => 'airport_name', data: {autocomplete_source: Airport.order(:name).map { |t| { :label => t.name, :value => t.id } } }, :value => @airport %>
+            <%= f.hidden_field :airport_id, :value => Airport.find_by_name(@airport).id %>
+        <% end %>
+  <% end %>
+
+  </div>
+  <div class="field">
+    <%= f.label :arrival_address_line_1 %>
+    <%= select_tag :arrival_address_line_1, options_for_select(Destination.order(:name).map { |destination| [destination.name, destination.airport_id] }.unshift(nil)) %>
+    <%= f.hidden_field :arrival_address_line_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :arrival_address_line_2 %>
+    <br>
+    <%= f.text_field :arrival_address_line_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :departure_address_line_1 %>
+    <br>
+    <%= f.text_field :departure_address_line_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :departure_address_line_2 %>
+    <br>
+    <%= f.text_field :departure_address_line_2 %>
+  </div>
+</div>
+<div class="col-md-3" style="border-right: 1px solid lightgrey;">
+  <div class="field">
+    <%= f.label :arrival_date %>
+    <br>
+
+    <div class='input-group date' id='datetimepicker1'>
+      <%= f.text_field :arrival_date %>
+      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+    </div>
+  </div>
+  <div class="field" id="departure_calendar">
+    <%= f.label :departure_date %>
+    <br>
+
+    <div class='input-group date' id='datetimepicker2'>
+      <%= f.text_field :departure_date %>
+      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+    </div>
+
+  </div>
+</div>
+<div class="col-md-3">
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.label :passengers %>
+    </div>
+    <div class="col-md-4">
+      <%= f.label :baggages %>
+    </div>
+    <div class="col-md-4">
+      <%= f.label :hand_laggages %>
+    </div>
+    <div class="col-md-4">
+      <%= f.select :passengers, (1..30).to_a.map { |n| [n, n] } %>
+    </div>
+    <div class="col-md-4">
+      <%= f.select :baggages, (0..50).to_a.map { |n| [n, n] } %>
+    </div>
+    <div class="col-md-4">
+      <%= f.select :hand_laggages, (0..30).to_a.map { |n| [n, n] } %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.label :baby %>
+    </div>
+    <div class="col-md-6">
+      <%= f.label :child %>
+    </div>
+    <div class="col-md-6">
+      <%= f.select :baby, (0..50).to_a.map { |n| [n, n] } %>
+    </div>
+    <div class="col-md-6">
+      <%= f.select :child, (0..50).to_a.map { |n| [n, n] } %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= link_to (I18n.t 'button.next'), '', :onclick =>
+              "change_link(); return false;", remote: true, class: "btn btn-sm btn-success", id: "first_step_complete"%>
+      <%= link_to "step_1_complete", vehicletypes_for_booking_path(11,12,13,14), remote: true, class: "btn btn-sm btn-success", id: "first_step_complete_", :style => "display: none;" %>
+    </div>
+  </div>
+</div>
+<!-- Step 1 -->
+
+<!-- Step 2 fields -->
+<div class="row">
+  <div class="col-md-12">
+<div class="field">
+  <!--<%= f.label :price %>-->
+  <!--<br>-->
+  <!--<div class="input-group">-->
+  <!--<span class="input-group-addon"><%= t 'prefix.dollar' %></span> </div>-->
+  <%= f.hidden_field :price %>
+</div>
+<div class="field">
+  <!--<%= f.label :vehicletype_id %>-->
+  <!--<br>-->
+  <%=  f.hidden_field :vehicletype_id %>
+</div>
+
+
+  </div>
+</div>

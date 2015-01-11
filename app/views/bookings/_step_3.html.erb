@@ -1,0 +1,67 @@
+<!-- Step 3 -->
+<h3 align="center" style="border-bottom: 1px solid #eeeeee;">Add details</h3>
+<div class="row">
+  <div class="col-md-6">
+    <div class="field">
+      <%= f.label :arrival_airline %>
+      <br>
+      <%= f.text_field :arrival_airline %>
+    </div>
+    <div class="field">
+      <%= f.label :arrival_flight_number %>
+      <br>
+      <%= f.text_field :arrival_flight_number %>
+    </div>
+    <div class="field">
+      <%= f.label :arrival_fliyng_from %>
+      <br>
+      <%= f.text_field :arrival_fliyng_from %>
+    </div>
+    <div class="field">
+      <%= f.label :departure_airlines %>
+      <br>
+      <%= f.text_field :departure_airlines %>
+    </div>
+    <div class="field">
+      <%= f.label :departure_flight_number %>
+      <br>
+      <%= f.text_field :departure_flight_number %>
+    </div>
+    <div class="field">
+      <%= f.label :arrival_pick_up_time %>
+      <br>
+      <div class='input-group date' id='datetimepicker3'>
+        <%= f.text_field :arrival_pick_up_time %>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+      </div>
+
+    </div>
+    <div class="field">
+      <%= f.label :departure_pick_up_time %>
+      <br>
+      <div class='input-group date' id='datetimepicker4'>
+        <%= f.text_field :departure_pick_up_time %>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="col-md-6">
+    <div class="field">
+      <%= f.label :booster %>
+      <br>
+      <%= f.text_field :booster %>
+    </div>
+    <div class="field">
+      <%= f.label :special_requirements %>
+      <br>
+      <%= f.text_field :special_requirements %>
+    </div>
+    <%= render "users/new" %>
+  </div>
+</div>
+<%= link_to ((I18n.t 'button.next')), '', onclick: "step_3(); return false", class: "btn btn-sm btn-success" %>
+<!-- Step 3 -->

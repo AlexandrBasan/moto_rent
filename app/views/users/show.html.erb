@@ -1,0 +1,38 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-12">
+    <section>
+      <h1><%= @user.email %></h1>
+          <ul class="listylenone">
+            <% if current_user && current_user.admin? %>
+                <% if (@user.provider == "facebook") || (@user.provider == "twitter") || (@user.provider == "google_oauth2") %>
+                    <li><%= image_tag @user.oauth_link_image, class: "img-circle" %></li>
+                <% else %>
+                    <li><%= gravatar_for @user %></li>
+                <% end %>
+            <% end %>
+            <li><b><%= t :name %>:</b> <%= @user.name %></li>
+            <li><b><%= t :email %>:</b> <%= @user.email %></li>
+            <!--User created date-->
+            <li><b><%= t :created_at %>:</b> <%= @user.created_at %></li>
+            <!--Show user CountryCode-->
+            <li><b><%= t :phone %>:</b> <%= @user.countrycode %><!--Show user Phone--><%= @user.phone %></li>
+            <!--Show user Role-->
+            <li><b><%= t :company_type %>:</b> <%= @user.role %></li>
+            <li><b><%= t :company_name %>:</b> <%= @company_name %><%= @company_name_for_show %></li>
+            <% if current_user && current_user.admin? %>
+                <li><b><%= t (t 'last_seen_at') %>:</b> <%= @user.last_seen_at %></li>
+                <li><b><%= t :provider %>:</b> <%= @user.provider %></li>
+                <li><b><%= t :oauth_link %>:</b> <%= @user.oauth_link %></li>
+                <li><b><%= t :invitation_token %>:</b> <%= @user.invitation_token %></li>
+                <li><b><%= t ('unsubscribe_block.subscription') %>:</b> <%= @user.subscription %></li>
+            <% end %>
+          </ul>
+
+      <!--Edit User-->
+
+    </section>
+
+  </aside>
+
+</div>

@@ -1,0 +1,14 @@
+---
+:DeliveryCompany:
+  :avatar:
+  - :large
+  - :large_m
+  - :medium
+  - :medium_m
+  - :thumb
+  - :thumb_m
+:Partner:
+  :avatar:
+  - :large
+  - :medium
+  - :thumb

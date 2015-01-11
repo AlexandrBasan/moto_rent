@@ -1,0 +1,41 @@
+<%= form_for(@destination_fare) do |f| %>
+  <% if @destination_fare.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@destination_fare.errors.count, "error") %> prohibited this destination_fare from being saved:</h2>
+
+      <ul>
+      <% @destination_fare.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :vehicletype_id %><br>
+    <%= f.select :vehicletype_id, @vehicletypes.map { |vehicletypes| [vehicletypes.vtype, vehicletypes.id] } %>
+  </div>
+  <div class="field">
+    <%= f.label :destination_id %><br>
+    <%= text_field_tag nil, nil, :id => 'destination_name', data: {autocomplete_source: Destination.order(:name).map { |t| { :label => t.name, :value => t.id } } } %>
+    <%= f.hidden_field :destination_id %>
+    <script>
+        $("#destination_name").autocomplete({
+            source:$('#destination_name').data('autocomplete-source'),
+            select: function(e, ui) {
+                e.preventDefault() // <--- Prevent the value from being inserted.
+                $(this).val(ui.item.label)
+                $('#destination_fare_destination_id').val(ui.item.value)
+            }
+        });
+        //alert("this loaded");
+    </script>
+  </div>
+  <div class="field">
+    <%= f.label :dest_fare %><br>
+    <%= f.text_field :dest_fare %>
+  </div>
+  <div class="actions">
+    <%= f.submit (t 'button.ok'), class: "btn btn-sm btn-primary" %>
+  </div>
+<% end %>

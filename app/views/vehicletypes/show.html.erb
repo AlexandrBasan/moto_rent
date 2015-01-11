@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Vtype:</strong>
+  <%= @vehicletype.vtype %>
+</p>
+
+<p>
+  <strong>Vdescription:</strong>
+  <%= @vehicletype.vdescription %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+<div class="portrait_map">
+  <img alt="" src="<%= @vehicletype.image %>">
+</div>
+</p>
+
+<p>
+  <strong>Passnum:</strong>
+  <%= @vehicletype.passnum %>
+</p>
+
+<p>
+  <strong>Bagagenum:</strong>
+  <%= @vehicletype.bagagenum %>
+</p>
+
+<%= link_to (I18n.t 'button.edit'), edit_vehicletype_path(@vehicletype), class: "btn btn-sm btn-primary" %> |
+<%= link_to (I18n.t 'button.back'), vehicletypes_path, class: "btn btn-sm btn-warning" %>
