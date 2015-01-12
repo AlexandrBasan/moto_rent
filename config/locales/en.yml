@@ -164,7 +164,7 @@ en:
     resort_to_airport: "Resort to airport"
     new: "New booking"
   why:
-    title: "Do you need help or more information about booking your transfer?"
+    title: "Do you need help or more information about scooter or motobike rental in New Zealand?"
     subtitle: ""
     tab_1_name: "Very Flexible"
     tab_2_name: "24/7 Support"
@@ -172,7 +172,7 @@ en:
     tab_4_name: "Well Documented"
     tab_2_left_text: "If you have any question about booking, please contact us via"
   parallax:
-    main: "Do you need perfect transfer from airport?"
+    main: "Do you need lower price scooter rental?"
     link: "Make booking with discount -10%"
   user_type: "User type"
   user_role: "User role"
