@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141122233902) do
+ActiveRecord::Schema.define(version: 20150112165946) do
 
   create_table "airports", force: true do |t|
     t.string   "code"
@@ -41,13 +41,8 @@ ActiveRecord::Schema.define(version: 20141122233902) do
     t.integer  "airport_id"
     t.string   "status"
     t.string   "booking_type"
-    t.string   "arrival_airline"
-    t.string   "arrival_flight_number"
-    t.string   "arrival_fliyng_from"
-    t.datetime "arrival_date"
-    t.string   "departure_airlines"
-    t.string   "departure_flight_number"
-    t.datetime "departure_date"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.datetime "arrival_pick_up_time"
     t.datetime "departure_pick_up_time"
     t.decimal  "price"
@@ -55,13 +50,6 @@ ActiveRecord::Schema.define(version: 20141122233902) do
     t.string   "arrival_address_line_2"
     t.string   "departure_address_line_1"
     t.string   "departure_address_line_2"
-    t.integer  "passengers"
-    t.integer  "baggages"
-    t.integer  "hand_laggages"
-    t.integer  "baby"
-    t.integer  "child"
-    t.string   "booster"
-    t.string   "special_requirements"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

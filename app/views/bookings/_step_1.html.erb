@@ -102,21 +102,21 @@
 </div>
 <div class="col-md-3" style="border-right: 1px solid lightgrey;">
   <div class="field">
-    <%= f.label :arrival_date %>
+    <%= f.label :start_date %>
     <br>
 
     <div class='input-group date' id='datetimepicker1'>
-      <%= f.text_field :arrival_date %>
+      <%= f.text_field :start_date %>
       <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
     </div>
   </div>
   <div class="field" id="departure_calendar">
-    <%= f.label :departure_date %>
+    <%= f.label :end_date %>
     <br>
 
     <div class='input-group date' id='datetimepicker2'>
-      <%= f.text_field :departure_date %>
+      <%= f.text_field :end_date %>
       <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
     </div>
@@ -126,36 +126,10 @@
 <div class="col-md-3">
   <div class="row">
     <div class="col-md-4">
-      <%= f.label :passengers %>
-    </div>
-    <div class="col-md-4">
-      <%= f.label :baggages %>
-    </div>
-    <div class="col-md-4">
-      <%= f.label :hand_laggages %>
-    </div>
-    <div class="col-md-4">
-      <%= f.select :passengers, (1..30).to_a.map { |n| [n, n] } %>
-    </div>
-    <div class="col-md-4">
-      <%= f.select :baggages, (0..50).to_a.map { |n| [n, n] } %>
-    </div>
-    <div class="col-md-4">
-      <%= f.select :hand_laggages, (0..30).to_a.map { |n| [n, n] } %>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
-      <%= f.label :baby %>
-    </div>
-    <div class="col-md-6">
-      <%= f.label :child %>
-    </div>
-    <div class="col-md-6">
-      <%= f.select :baby, (0..50).to_a.map { |n| [n, n] } %>
-    </div>
-    <div class="col-md-6">
-      <%= f.select :child, (0..50).to_a.map { |n| [n, n] } %>
     </div>
   </div>
   <div class="row">
