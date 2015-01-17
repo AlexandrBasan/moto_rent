@@ -82,7 +82,7 @@ gem 'roo'
 gem 'iconv'
 
 #gem 'wicked'
-gem 'nested_form'
+#gem 'nested_form'
 
 # Amazon EC2
 

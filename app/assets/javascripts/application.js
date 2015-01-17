@@ -17,5 +17,4 @@
 //= require bootstrap-tour.min.js
 //= require jquery.validate.min.js
 //= require jquery-ui.js
-//= require jquery_nested_form
 //= require_tree .
