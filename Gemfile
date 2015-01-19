@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.0'
+ruby '2.1.5'
 #ruby-gemset=moto_rent
 
 gem 'rails', '4.1.5'
