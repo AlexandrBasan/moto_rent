@@ -122,6 +122,7 @@ en:
     booking: "Booking"
     countries_list: "Countries list"
     users: "Users"
+    moto_types: "Moto types"
   menu_agent:
     my_orders: "My orders"
   county:
