@@ -1,7 +1,7 @@
 <!-- Step 1 -->
-<div class="col-md-3" style="border-right: 1px solid lightgrey;">
+<!--<div class="col-md-3" style="border-right: 1px solid lightgrey;">-->
 
-  <div class="row">
+<!--  <div class="row">
     <%= f.label 'What type of transfer do you need?' %>
     <div class="col-md-2">
       <%= f.radio_button(:booking_type, "return", :checked => true) %>
@@ -16,9 +16,9 @@
     <div class="col-md-10">
       <b><%= t ('booking.one_way') %></b>
     </div>
-  </div>
+  </div>-->
 
-  <div class="row" id="where_go">
+  <!--<div class="row" id="where_go">
     <div class="col-md-2">
       <%= radio_button_tag(:where, "Airport to resort", :checked => true) %>
     </div>
@@ -32,7 +32,7 @@
     <div class="col-md-10">
       <b><%= t ('booking.resort_to_airport') %></b>
     </div>
-  </div>
+  </div>-->
 
   <div class="field">
     <!--<%= f.label :user_id %>-->
@@ -60,9 +60,9 @@
     <%= f.hidden_field :status %>
   </div>
 
-</div>
+<!--</div>-->
 <div class="col-md-3" style="border-right: 1px solid lightgrey;">
-  <div class="field">
+<!--  <div class="field">
     <%= f.label :airport_id %>
     <br>
     <% if @airport.nil? || @airport.empty? %>
@@ -78,7 +78,7 @@
         <% end %>
   <% end %>
 
-  </div>
+  </div>-->
   <div class="field">
     <%= f.label :arrival_address_line_1 %>
     <%= select_tag :arrival_address_line_1, options_for_select(Destination.order(:name).map { |destination| [destination.name, destination.airport_id] }.unshift(nil)) %>

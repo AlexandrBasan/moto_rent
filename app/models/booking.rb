@@ -5,7 +5,7 @@ class Booking < ActiveRecord::Base
   belongs_to :airport
   has_one :order
 
-  validates :airport_id, presence: true
+  #validates :airport_id, presence: true
   #validates :arrival_date, presence: true, :if => :step_1?
 
   #with_options :if => :step_1? do |book|
